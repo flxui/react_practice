@@ -2,16 +2,23 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Searchbar from './Searchbar'
-import { BrowserRouter } from 'react-router-dom'
+import Button from './Button'
+import { useSearchParams } from 'react-router-dom'
 
 
 function App() {
+
+  let [searchParams, setSearchParams] = useSearchParams()
+
+  function filterOutNumbers() {
+    setSearchParams({ "filter": 'letters-only' })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <BrowserRouter>
-          <Searchbar></Searchbar>
-        </BrowserRouter>
+        <Button text="Exclude numbers" onClickFunction={() => filterOutNumbers()} ></Button>
+        <Searchbar></Searchbar>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
