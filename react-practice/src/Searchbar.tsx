@@ -6,15 +6,15 @@ import { useSearchParams } from 'react-router-dom'
 // }
 
 function Searchbar() {
-// function Searchbar(props: { text: string }) {
-// function Searchbar(props: SearchbarProps) {
+    // function Searchbar(props: { text: string }) {
+    // function Searchbar(props: SearchbarProps) {
 
     let [searchParams, setSearchParams] = useSearchParams()
+    const obj = Object.fromEntries([...searchParams])
 
     function handleChange(event: React.FormEvent<HTMLInputElement>) {
-        // console.log(event.currentTarget.value)
-        const inputValue: string = event.currentTarget.value
-        setSearchParams({ "s": inputValue })
+        obj.s = event.currentTarget.value
+        setSearchParams(obj)
     }
 
     return (

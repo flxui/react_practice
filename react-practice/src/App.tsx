@@ -10,8 +10,11 @@ function App() {
 
   let [searchParams, setSearchParams] = useSearchParams()
 
+
   function filterOutNumbers() {
-    setSearchParams({ "filter": 'letters-only' })
+    const obj = Object.fromEntries([...searchParams])
+    obj.filter = 'letters-only'
+    setSearchParams(obj)
   }
 
   return (
