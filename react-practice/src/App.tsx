@@ -5,6 +5,7 @@ import Searchbar from './Searchbar'
 import Button from './Button'
 import { useSearchParams } from 'react-router-dom'
 
+import List from './List'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <List itemsPerPage={10}></List>
         <Button text="Exclude numbers" onClickFunction={() => filterOutNumbers()} ></Button>
         <Searchbar></Searchbar>
         <img src={logo} className="App-logo" alt="logo" />

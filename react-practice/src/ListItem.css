@@ -1,0 +1,11 @@
+.ListItem {
+    border: solid;
+    width: 200px;
+    padding: 0px 0px 10px 10px;
+    margin-top: 10px;
+}
+
+.ListItem:hover {
+    background-color: white;
+    color: #282c34;
+}
