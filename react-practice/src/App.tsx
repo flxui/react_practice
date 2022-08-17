@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <List itemsPerPage={10}></List>
+        <List></List>
         <Button text="Exclude numbers" onClickFunction={() => filterOutNumbers()} ></Button>
         <Searchbar></Searchbar>
         <img src={logo} className="App-logo" alt="logo" />

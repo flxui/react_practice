@@ -1,14 +1,28 @@
 import React from 'react'
 import useSearchParams from 'react-router-dom'
-
 import ListItem from './ListItem'
 
-const words = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'Nam', 'arcu', 'elit', 'mollis', 'sed', 'venenatis', 'quis', 'sollicitudin', 'nec', 'turpis', 'In', 'nulla', 'dolor', 'maximus', 'et', 'cursus', 'eget']
+const wordsPerPage = 25
+const words = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'Nam', 'arcu', 'elit', 'mollis', 'sed', 'venenatis', 'quis', 'sollicitudin', 'nec', 'turpis', 'In', 'nulla', 'dolor', 'maximus', 'et', 'cursus', 'eget',
+    'Nisl', 'nisi', 'scelerisque', 'eu', 'ultrices', 'vitae', 'auctor', 'Ut', 'diam', 'quam', 'nulla', 'porttitor', 'massa', 'id', 'neque', 'Nibh', 'venenatis', 'cras', 'sed', 'felis', 'eget', 'velit', 'aliquet', 'sagittis', 'id',
+    'Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'Nam', 'arcu', 'elit', 'mollis', 'sed', 'venenatis', 'quis', 'sollicitudin', 'nec', 'turpis', 'In', 'nulla', 'dolor', 'maximus', 'et', 'cursus', 'eget',
+    'Nisl', 'nisi', 'scelerisque', 'eu', 'ultrices', 'vitae', 'auctor', 'Ut', 'diam', 'quam', 'nulla', 'porttitor', 'massa', 'id', 'neque', 'Nibh', 'venenatis', 'cras', 'sed', 'felis', 'eget', 'velit', 'aliquet', 'sagittis', 'id']
+// 100 words
 
-function List(props: {itemsPerPage: number}) {
+function createFormattedWords(): Array<Array<string>> {
+    const res: Array<Array<string>> = []
+    for (let i = 0; i < words.length; i += wordsPerPage) {
+        const chunk: Array<string> = words.slice(i, i + wordsPerPage)
+        res.push(chunk)
+    }
+    return res
+}
+const formattedWords: Array<Array<string>> = createFormattedWords()
+
+function List() {
     return (
         <div>
-            {words.map(i => {
+            {formattedWords[1].map(i => {
                 return <ListItem text={i}></ListItem>
             })}
         </div>
