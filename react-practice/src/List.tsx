@@ -1,5 +1,7 @@
 import React from 'react'
-import useSearchParams from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
+import Button from './Button';
 import ListItem from './ListItem'
 
 const wordsPerPage = 25
@@ -20,11 +22,32 @@ function createFormattedWords(): Array<Array<string>> {
 const formattedWords: Array<Array<string>> = createFormattedWords()
 
 function List() {
+    let [searchParams, setSearchParams] = useSearchParams()
+    const obj = Object.fromEntries([...searchParams])
+
+    function computePage(nextPage: boolean): void {
+        const currentPage = Number(obj.page)
+
+        if (nextPage === true) {
+            if (currentPage != formattedWords.length)
+                obj.page = String(currentPage + 1)
+        }
+        else {
+            if (currentPage != 1)
+                obj.page = String(currentPage - 1)
+        }
+        setSearchParams(obj)
+    }
+
     return (
         <div>
-            {formattedWords[1].map(i => {
-                return <ListItem text={i}></ListItem>
-            })}
+            <div>
+                {formattedWords[Number(obj.page) - 1].map(i => {
+                    return <ListItem text={i}></ListItem>
+                })}
+            </div>
+            <Button onClickFunction={() => computePage(true)} text="Next page"></Button>
+            <Button onClickFunction={() => computePage(false)} text="Previous page"></Button>
         </div>
     )
 }
