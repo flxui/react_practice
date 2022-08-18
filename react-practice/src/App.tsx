@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Searchbar from './Searchbar'
@@ -10,6 +10,12 @@ import List from './List'
 function App() {
 
   let [searchParams, setSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    const obj = Object.fromEntries([...searchParams])
+    obj.page = '1'
+    setSearchParams(obj)
+  }, [])
 
 
   function filterOutNumbers() {
