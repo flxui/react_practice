@@ -10,6 +10,7 @@ import List from './List'
 function App() {
 
   let [searchParams, setSearchParams] = useSearchParams()
+  const obj = Object.fromEntries([...searchParams])
 
   useEffect(() => {
     const obj = Object.fromEntries([...searchParams])
@@ -19,8 +20,12 @@ function App() {
 
 
   function filterOutNumbers() {
-    const obj = Object.fromEntries([...searchParams])
-    obj.filter = 'letters-only'
+    obj.filterOutNumbers = 'true'
+    setSearchParams(obj)
+  }
+
+  function sortAlphabetically() {
+    obj.sortAlphabetically = 'true'
     setSearchParams(obj)
   }
 
@@ -28,7 +33,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <List></List>
-        <Button text="Filter Alphabetically" onClickFunction={() => filterOutNumbers()} ></Button>
+        <Button text="Filter Out Numbers" onClickFunction={() => filterOutNumbers()} ></Button>
+        <Button text="Sort Alphabetically" onClickFunction={() => sortAlphabetically()} ></Button>
         <Searchbar></Searchbar>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
