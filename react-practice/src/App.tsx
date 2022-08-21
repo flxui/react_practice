@@ -14,12 +14,14 @@ function App() {
 
     useEffect(() => {
         const obj = Object.fromEntries([...searchParams])
+        console.log('aled')
         obj.page = '1'
         setSearchParams(obj)
     }, [])
 
     function filterOutNumbers() {
         obj.filterOutNumbers = 'true'
+        obj.page = '1'
         setSearchParams(obj)
     }
 
@@ -38,22 +40,13 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <List></List>
-                <Button text="Filter Out Numbers" onClickFunction={() => filterOutNumbers()} ></Button>
-                <Button text="Sort Alphabetically" onClickFunction={() => sortAlphabetically()} ></Button>
-                <Button text="Remove Filters" onClickFunction={() => removeFilters()} ></Button>
-                <Searchbar></Searchbar>
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
+                <div>
+                  <img src={logo} className="App-logo" alt="logo" />
+                  <Button text="Filter Out Numbers" onClickFunction={() => filterOutNumbers()} ></Button>
+                  <Button text="Sort Alphabetically" onClickFunction={() => sortAlphabetically()} ></Button>
+                  <Button text="Remove Filters" onClickFunction={() => removeFilters()} ></Button>
+                  <Searchbar></Searchbar>
+                </div>
             </header>
         </div>
     );
