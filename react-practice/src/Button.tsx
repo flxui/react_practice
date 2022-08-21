@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 interface ButtonProps {
     text: string,
-    onClickFunction(): void
+    onClickFunction?(): void
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
